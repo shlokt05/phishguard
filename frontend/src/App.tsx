@@ -7,6 +7,7 @@ import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { Learn } from './pages/Learn';
 import { FakeWebsiteTraining } from './pages/FakeWebsiteTraining';
+import { ThreatLabPage } from './pages/ThreatLabPage';
 import { Detect } from './pages/Detect';
 import { Safety } from './pages/Safety';
 import { Quiz } from './pages/Quiz';
@@ -21,13 +22,14 @@ export const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
-        <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-brand-500 selection:text-white">
+        <div className="flex flex-col min-h-screen bg-[#0A0E17] text-slate-100 font-sans selection:bg-emerald-500 selection:text-white">
           <Navbar />
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/learn" element={<Learn />} />
               <Route path="/fake-website-training" element={<FakeWebsiteTraining />} />
+              <Route path="/threat-lab" element={<ThreatLabPage />} />
               <Route path="/detect" element={<Detect />} />
               <Route path="/safety" element={<Safety />} />
               <Route path="/quiz" element={<Quiz />} />

@@ -1,0 +1,341 @@
+{
+  "categories": [
+    {
+      "id": "ecommerce",
+      "name": "E-Commerce & Flash Deals",
+      "icon": "ShoppingBag",
+      "description": "Examine how cybercriminals clone major shopping platforms like Amazon and Flipkart with fake '₹99 Maha Loot' spin-and-win traps to harvest payment credentials and direct UPI funds.",
+      "authentic": {
+        "brand": "Amazon India",
+        "domain": "amazon.in",
+        "url": "https://www.amazon.in/dp/B0CX234LMN/deal?ref=prime_deals",
+        "securityBadge": "EV SSL Verified • Amazon Seller Services Pvt Ltd",
+        "protocol": "https://",
+        "tld": ".in",
+        "isLegit": true,
+        "siteHeader": {
+          "logo": "amazon.in",
+          "tagline": "Deliver to New Delhi 110001",
+          "searchPlaceholder": "Search Amazon.in",
+          "cartCount": 2
+        },
+        "content": {
+          "title": "OnePlus Nord CE4 (Dark Chrome, 8GB RAM, 128GB Storage)",
+          "rating": "4.3 ★ (14,892 reviews)",
+          "currentPrice": "₹19,999",
+          "originalPrice": "₹24,999",
+          "discount": "20% off",
+          "badges": ["Prime Eligible", "Free Delivery Tomorrow", "7 Days Replacement"],
+          "paymentMethods": ["Amazon Pay UPI", "Credit / Debit Card (PCI-DSS)", "Net Banking", "Cash on Delivery"],
+          "seller": "Appario Retail Pvt Ltd (GST Registered • 4.8★)"
+        },
+        "footer": {
+          "links": ["Conditions of Use & Sale", "Privacy Notice", "Interest-Based Ads", "Returns Centre", "Security Information"],
+          "copyright": "© 1996-2026, Amazon.com, Inc. or its affiliates"
+        }
+      },
+      "fake": {
+        "brand": "Amazon Maha Loot (Clone)",
+        "domain": "amazon-mega-loot-festival.xyz",
+        "url": "http://amazon-mega-loot-festival.xyz/deal/claim-iphone15-99rs?utm_src=whatsapp",
+        "securityBadge": "CRITICAL RISK • Unverified / High-Risk Free TLD",
+        "protocol": "http://",
+        "tld": ".xyz",
+        "isLegit": false,
+        "threatLevel": "CRITICAL",
+        "siteHeader": {
+          "logo": "amazon maha loot",
+          "tagline": "Special Secret Deal for WhatsApp Visitors",
+          "searchPlaceholder": "Search deals...",
+          "cartCount": 1
+        },
+        "content": {
+          "title": "Apple iPhone 15 Pro Max (256 GB) - Festival Clearance Prize",
+          "rating": "5.0 ★ (999,999 reviews)",
+          "currentPrice": "₹99",
+          "originalPrice": "₹1,59,900",
+          "discount": "99.9% DISCOUNT",
+          "urgencyTimer": "02:44",
+          "stockAlert": "Only 3 items remaining in stock! 42 people are viewing this right now.",
+          "paymentNote": "Pay ₹99 immediately via direct UPI QR or Send to 'lootdeal99@ybl' to lock your order!",
+          "upiId": "pay-instant-claim@upi",
+          "seller": "Official Festive Partner Direct Warehouse"
+        },
+        "footer": {
+          "links": ["Terms & Conditions (dead link)", "Privacy Policy (dead link)", "Contact Support (broken)"],
+          "copyright": "© 2026 All Rights Reserved Mega Offer Loot"
+        },
+        "hotspots": [
+          {
+            "id": "hs-ecom-domain",
+            "element": "domain",
+            "title": "Deceptive Root Domain & High-Risk TLD",
+            "riskLevel": "CRITICAL",
+            "visualSelector": "url_bar",
+            "highlight": "amazon-mega-loot-festival.xyz",
+            "whatYouSee": "The URL displays 'amazon' as part of a long hyphenated domain with an exotic '.xyz' extension.",
+            "whyItsMalicious": "Attackers register cheap domains (like .xyz, .top, .buzz) with brand names hyphenated. Notice the connection uses unencrypted HTTP. The actual official root domain is amazon.in or amazon.com, never a hyphenated .xyz.",
+            "defenseTip": "Always inspect the root domain immediately preceding the TLD. If the domain contains hype words ('mega-loot', 'free-gift') or unusual extensions, navigate away immediately."
+          },
+          {
+            "id": "hs-ecom-timer",
+            "element": "urgency",
+            "title": "Manufactured Panic & Fake Countdown Timer",
+            "riskLevel": "HIGH",
+            "visualSelector": "countdown_timer",
+            "highlight": "HURRY! Deal expires in 02:44",
+            "whatYouSee": "An aggressive flashing red clock counting down seconds with fake notifications claiming other users just purchased.",
+            "whyItsMalicious": "Cybercriminals exploit the 'Fear Of Missing Out' (FOMO) cognitive bias. If you refresh the webpage, the timer resets back to 3 minutes. The urgency is engineered to prevent you from checking the URL or verifying the seller.",
+            "defenseTip": "Legitimate platforms do not give you 180 seconds before an authentic transaction is cancelled. Treat extreme artificial countdown clocks as an immediate scam signal."
+          },
+          {
+            "id": "hs-ecom-price",
+            "element": "unrealistic_deal",
+            "title": "Absurd ₹99 Mega Deal Trap",
+            "riskLevel": "HIGH",
+            "visualSelector": "price_tag",
+            "highlight": "₹1,59,900 reduced to ₹99 (99.9% OFF)",
+            "whatYouSee": "A flagship luxury smartphone priced lower than a cup of coffee.",
+            "whyItsMalicious": "This is a classic 'too good to be true' advance fee fraud. Even if you pay ₹99, no phone will ever ship. Furthermore, the payment page attempts to capture your UPI PIN or debit card CVV.",
+            "defenseTip": "If an offer defies economic reality, it is 100% fraud. Brand clearance sales never discount flagship luxury electronics by 99%."
+          },
+          {
+            "id": "hs-ecom-upi",
+            "element": "payment",
+            "title": "Unverified Personal UPI / Static QR Hijack",
+            "riskLevel": "CRITICAL",
+            "visualSelector": "payment_box",
+            "highlight": "pay-instant-claim@upi / lootdeal99@ybl",
+            "whatYouSee": "Direct prompt to scan a static personal QR code or transfer to an individual VPA instead of an authorized merchant gateway.",
+            "whyItsMalicious": "Authorized e-commerce stores use RBI-compliant merchant gateways (Razorpay, BillDesk, Amazon Pay, PayU) that route through escrow. Direct personal VPAs offer zero consumer protection, cannot be refunded, and allow scammers to cash out immediately via mules.",
+            "defenseTip": "Never transfer money to a raw personal UPI VPA when shopping online. Legitimate checkouts trigger merchant payment requests with registered business names."
+          },
+          {
+            "id": "hs-ecom-footer",
+            "element": "footer",
+            "title": "Dead Footer Links & Bogus Compliance",
+            "riskLevel": "MEDIUM",
+            "visualSelector": "footer_links",
+            "highlight": "href='#' on all regulatory legal pages",
+            "whatYouSee": "Terms, Privacy Policy, and Contact Us links look clickable with official looking logos, but clicking them simply reloads the page or does nothing.",
+            "whyItsMalicious": "Phishing kits copy the visual HTML/CSS snapshot of a homepage but strip or break auxiliary backend pages. Legitimate sites have detailed corporate terms, Grievance Officer details, and working refund policies.",
+            "defenseTip": "Before trusting an unknown shopping site, click on 'Privacy Policy' or 'Grievance Officer'. If the link goes to '#' or gives a 404, it is a scraped clone."
+          }
+        ]
+      }
+    },
+    {
+      "id": "banking",
+      "name": "Banking & KYC Verification",
+      "icon": "Building2",
+      "description": "Compare authentic NetBanking security protocols against deceptive PAN/KYC expiration clones that mimic top public and private sector banks.",
+      "authentic": {
+        "brand": "State Bank of India (SBI)",
+        "domain": "onlinesbi.sbi",
+        "url": "https://retail.onlinesbi.sbi/retail/login.htm",
+        "securityBadge": "Extended Validation TLS • State Bank of India [IN]",
+        "protocol": "https://",
+        "tld": ".sbi",
+        "isLegit": true,
+        "siteHeader": {
+          "logo": "State Bank of India",
+          "tagline": "The Banker to Every Indian",
+          "securityNotice": "Mandatory 2FA Enabled • Virtual Keyboard Available",
+          "contact": "Toll Free: 1800 1234 / 1800 2100"
+        },
+        "content": {
+          "portalName": "Personal Banking - Secure Login",
+          "loginFields": ["Username", "Login Password", "Captcha Code"],
+          "securityFeatures": [
+            "Domain under dedicated '.sbi' bank-owned gTLD",
+            "Virtual keypad available to prevent keyloggers",
+            "Clear warning: 'SBI never asks for OTP, PIN, or CVV over call/SMS'",
+            "Official Lock Icon with EV Certificate validation"
+          ],
+          "kycProcedure": "KYC updates are strictly performed inside authorized branch offices or through the official YONO app with video verification."
+        },
+        "footer": {
+          "links": ["Privacy Policy", "Disclaimer", "Customer Care", "Terms of Service", "RBI Kehta Hai"],
+          "copyright": "© 2026 State Bank of India. All rights reserved."
+        }
+      },
+      "fake": {
+        "brand": "SBI KYC Verification Portal (Clone)",
+        "domain": "sbi-kyc-pan-update.top",
+        "url": "https://sbi-kyc-pan-update.top/online/update-kyc.html",
+        "securityBadge": "HIGH RISK • Typosquatting / Unauthorized Third-Party Domain",
+        "protocol": "https://",
+        "tld": ".top",
+        "isLegit": false,
+        "threatLevel": "CRITICAL",
+        "siteHeader": {
+          "logo": "State Bank of India - Quick KYC Portal",
+          "tagline": "Emergency PAN Card Linking Portal",
+          "securityNotice": "ACCOUNT SUSPENSION WARNING",
+          "contact": "Helpdesk: +91 98765 43210 (Individual Mobile)"
+        },
+        "content": {
+          "portalName": "Mandatory PAN-Aadhaar & Debit Card Verification",
+          "urgencyAlert": "Dear Customer, your bank account will be PERMANENTLY BLOCKED within 24 hours due to unlinked PAN card. Update now to avoid ₹5,000 penalty.",
+          "loginFields": [
+            "Customer CIF / User ID",
+            "Profile Password",
+            "16-Digit Debit Card Number",
+            "Card Expiry & ATM PIN",
+            "One Time Password (OTP)"
+          ],
+          "trapMechanism": "Directly requests ATM PIN and SMS OTP on the initial login screen.",
+          "smsHook": "Alert from +91-XXXXXXXXXX: 'SBI user! Your A/C will be suspended today. Click here to verify: sbi-kyc-pan-update.top'"
+        },
+        "footer": {
+          "links": ["RBI Guidelines", "Security Guidelines", "Contact Us"],
+          "copyright": "© Copyright State Bank Clone"
+        },
+        "hotspots": [
+          {
+            "id": "hs-bank-domain",
+            "element": "domain",
+            "title": "Typosquatting with '.top' Extension",
+            "riskLevel": "CRITICAL",
+            "visualSelector": "url_bar",
+            "highlight": "sbi-kyc-pan-update.top",
+            "whatYouSee": "The domain begins with 'sbi-' followed by 'kyc-pan-update' ending in '.top'.",
+            "whyItsMalicious": "Major Indian banks own their own gTLDs or official domains (e.g. .sbi, hdfcbank.com, icicibank.com). Attackers register domains ending in cheap extensions like '.top', '.club', or '.live'. Even though it shows 'https://' with a free Let's Encrypt lock, the owner is an individual scammer.",
+            "defenseTip": "A padlock icon only means communication is encrypted—it DOES NOT mean the website is legitimate. Verify the exact domain name letter-by-letter."
+          },
+          {
+            "id": "hs-bank-urgency",
+            "element": "urgency",
+            "title": "Account Suspension Coercion",
+            "riskLevel": "HIGH",
+            "visualSelector": "warning_banner",
+            "highlight": "ACCOUNT BLOCKED IN 24 HOURS",
+            "whatYouSee": "Bold red threat stating your bank account and debit card are already suspended or will freeze within 24 hours.",
+            "whyItsMalicious": "Banks are legally required by the Reserve Bank of India to provide advance written notices and statutory grace periods before restricting accounts. Panic makes victims bypass their natural skepticism.",
+            "defenseTip": "Whenever you receive a threat of immediate bank account suspension, call your branch or official toll-free helpline directly. Never click the link in the message."
+          },
+          {
+            "id": "hs-bank-pin",
+            "element": "credentials",
+            "title": "Harvesting ATM PIN & Card Expiry",
+            "riskLevel": "CRITICAL",
+            "visualSelector": "input_form",
+            "highlight": "Enter ATM PIN & CVV for KYC verification",
+            "whatYouSee": "The form asks for Debit Card Number, Expiry Date, CVV, and ATM PIN under the guise of 'Identity Verification'.",
+            "whyItsMalicious": "No legitimate bank web form in the world ever asks for your 4-digit ATM PIN or card CVV to verify KYC. Once submitted, the attacker uses an automated API or POS terminal to drain your account balance immediately.",
+            "defenseTip": "Rule of thumb: Your ATM PIN is strictly for ATM machines and POS terminals. Never type your ATM PIN into any internet browser or webpage."
+          },
+          {
+            "id": "hs-bank-sms",
+            "element": "origin",
+            "title": "Unregistered 10-Digit Mobile Sender",
+            "riskLevel": "HIGH",
+            "visualSelector": "sender_info",
+            "highlight": "Sent from +91-9876543210 instead of Header like 'VM-SBIINB'",
+            "whatYouSee": "Customer support contact is a personal 10-digit mobile number, or the SMS alert came from a personal SIM card.",
+            "whyItsMalicious": "Under TRAI DLT regulations, official bank alerts MUST come from verified registered headers (e.g. AD-SBIINB, VK-HDFCBK, AX-ICICIB). Scammers use unregistered SIM cards or VoIP forwarding.",
+            "defenseTip": "If a banking notification comes from a standard 10-digit phone number (+91-9xxxx or +91-8xxxx), it is an illegal phishing attack."
+          }
+        ]
+      }
+    },
+    {
+      "id": "delivery",
+      "name": "Courier & Malicious APK Sideloading",
+      "icon": "Package",
+      "description": "Investigate fake India Post & courier tracking portals that demand ₹5 redelivery charges and trigger downloads of credential-stealing Android APKs.",
+      "authentic": {
+        "brand": "India Post / Department of Posts",
+        "domain": "indiapost.gov.in",
+        "url": "https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx",
+        "securityBadge": "Government of India Verified • National Informatics Centre",
+        "protocol": "https://",
+        "tld": ".gov.in",
+        "isLegit": true,
+        "siteHeader": {
+          "logo": "India Post - Ministry of Communications",
+          "tagline": "Dak Seva • Jan Seva",
+          "emblem": "Ashoka Lion Capital Emblem",
+          "portal": "Official Consignment Tracking Portal"
+        },
+        "content": {
+          "trackingNumber": "Consignment Number: ED892174621IN",
+          "status": "In Transit - Out for Delivery",
+          "destination": "New Delhi GPO",
+          "redeliveryRules": "Postmen attempt delivery twice. Unclaimed parcels are held at the local Post Office for 7 days without advance fee links.",
+          "officialApp": "PostInfo App (Official on Google Play Store only)"
+        },
+        "footer": {
+          "links": ["Terms & Conditions", "Privacy Policy", "RTI", "Contact Us", "National Portal of India"],
+          "copyright": "Website Policies • Content owned and updated by Department of Posts, Ministry of Communications, Government of India"
+        }
+      },
+      "fake": {
+        "brand": "India Post Parcel Delivery (Clone)",
+        "domain": "indiapost-delivery-track.support",
+        "url": "https://indiapost-delivery-track.support/track/parcel-held.html",
+        "securityBadge": "HIGH THREAT • Malware / Malicious APK Distributor",
+        "protocol": "https://",
+        "tld": ".support",
+        "isLegit": false,
+        "threatLevel": "CRITICAL",
+        "siteHeader": {
+          "logo": "India Post Delivery Assistant",
+          "tagline": "Parcel Pending Address Verification",
+          "emblem": "Stolen Low-Res Government Emblem",
+          "portal": "Priority Address Update"
+        },
+        "content": {
+          "trackingNumber": "Notice: Parcel #IN-90284 Held at Hub",
+          "urgencyAlert": "Your package cannot be delivered due to incomplete street address. Pay ₹10 redelivery surcharge within 12 hours or item will be returned to sender.",
+          "downloadPrompt": "Download 'IndiaPost_Track.apk' to track live courier vehicle location and complete redelivery verification.",
+          "apkFile": "IndiaPost_Assistant_v3.apk (Requires 'Install Unknown Apps' permission)",
+          "hiddenPermissions": [
+            "RECEIVE_SMS (Intercepts bank OTPs)",
+            "READ_CONTACTS (Spreads scam to your friends)",
+            "BIND_ACCESSIBILITY_SERVICE (Logs all screen taps & netbanking passwords)"
+          ]
+        },
+        "footer": {
+          "links": ["Government Portal", "Help"],
+          "copyright": "© India Post Tracking Clone 2026"
+        },
+        "hotspots": [
+          {
+            "id": "hs-post-domain",
+            "element": "domain",
+            "title": "Non-Government Domain (.support vs .gov.in)",
+            "riskLevel": "CRITICAL",
+            "visualSelector": "url_bar",
+            "highlight": "indiapost-delivery-track.support",
+            "whatYouSee": "A domain with 'indiapost' in the string ending in '.support'.",
+            "whyItsMalicious": "All legitimate central and state government portals in India strictly operate on '.gov.in' or '.nic.in' domains. Commercial and generic extensions (.support, .com, .site) are never used for official public postal services.",
+            "defenseTip": "Check the domain extension: If a supposed Indian Government website does not end with '.gov.in', do not interact with it."
+          },
+          {
+            "id": "hs-post-apk",
+            "element": "malware",
+            "title": "Dangerous APK Sideloading Trap",
+            "riskLevel": "CRITICAL",
+            "visualSelector": "download_box",
+            "highlight": "Download IndiaPost_Assistant_v3.apk",
+            "whatYouSee": "The website urges you to download an Android application file (.apk) directly from the browser instead of the Google Play Store.",
+            "whyItsMalicious": "This is a banking trojan / SMS stealer. When installed, it asks for 'Accessibility' and 'SMS' permissions, allowing scammers in the background to read all your two-factor authentication codes and drain your accounts without your knowledge.",
+            "defenseTip": "NEVER install '.apk' files downloaded from websites or links received via SMS/WhatsApp. Only install applications through the official Google Play Store."
+          },
+          {
+            "id": "hs-post-surcharge",
+            "element": "micro_payment",
+            "title": "Micro-Fee Gateway Credential Harvesting",
+            "riskLevel": "HIGH",
+            "visualSelector": "fee_box",
+            "highlight": "Pay nominal fee of ₹10 to re-route delivery",
+            "whatYouSee": "A tiny charge of ₹5 or ₹10 that seems negligible to most users.",
+            "whyItsMalicious": "The scammer doesn't care about the ₹10. The payment form is a phishing skimmer designed to capture your full 16-digit debit card number, CVV, and expiration date. Once you enter it, an international e-commerce transaction for ₹50,000+ is triggered.",
+            "defenseTip": "Postal and courier companies do not demand online micro-surcharges via SMS links for address corrections. Return/reschedule policies are handled at the doorstep."
+          }
+        ]
+      }
+    }
+  ]
+}

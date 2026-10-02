@@ -11,10 +11,11 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Learn', path: '/learn' },
+    { name: 'Threat Lab', path: '/threat-lab' },
     { name: 'Detect', path: '/detect' },
     { name: 'Safety', path: '/safety' },
     { name: 'Quiz', path: '/quiz' },
-    { name: 'Posters', path: '/posters' },
+    { name: 'Awareness', path: '/posters' },
     { name: 'Progress', path: '/progress' },
     { name: 'Campaign', path: '/campaign' },
     { name: 'About', path: '/about' },
@@ -27,21 +28,21 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+    <header className="sticky top-0 z-50 bg-[#0A0E17]/90 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-brand-500 to-shield-light flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform duration-200">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 via-blue-600 to-emerald-500 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-200 border border-white/10">
               <Shield className="w-6 h-6 text-white" />
             </div>
             <div>
-              <div className="font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5">
-                PHISH<span className="text-brand-400">GUARD</span>
+              <div className="font-black text-xl tracking-tight text-white flex items-center gap-1.5 font-sans">
+                PHISH<span className="text-emerald-400">GUARD</span>
               </div>
-              <p className="text-[10px] uppercase font-bold tracking-widest text-slate-400 -mt-1">
-                Think Before You Click
+              <p className="text-[10px] uppercase font-mono font-bold tracking-widest text-slate-400 -mt-1">
+                TACTICAL DEFENSE PROTOCOL
               </p>
             </div>
           </Link>
@@ -54,8 +55,8 @@ export const Navbar: React.FC = () => {
                 to={link.path}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition-colors duration-150 ${
                   isActive(link.path)
-                    ? 'bg-brand-500/10 text-brand-400 border border-brand-500/30'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {link.name}

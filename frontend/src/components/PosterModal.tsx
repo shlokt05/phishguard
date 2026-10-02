@@ -1,34 +1,67 @@
-import React, { useRef } from 'react';
-import { X, Download, Share2, Shield, Check } from 'lucide-react';
-import { Poster } from '../types';
+import React, { useRef, useState } from 'react';
+import { X, Download, Share2, Shield, Check, AlertTriangle, ShieldCheck, ShieldAlert, Crosshair, Terminal } from 'lucide-react';
 import html2canvas from 'html2canvas';
+import { ThreatBreakdownCard } from '../pages/Posters';
 
 interface PosterModalProps {
-  poster: Poster | null;
+  threatCard?: ThreatBreakdownCard | null;
+  poster?: any;
   onClose: () => void;
 }
 
-export const PosterModal: React.FC<PosterModalProps> = ({ poster, onClose }) => {
+export const PosterModal: React.FC<PosterModalProps> = ({ threatCard, poster, onClose }) => {
   const posterRef = useRef<HTMLDivElement>(null);
-  const [copied, setCopied] = React.useState(false);
+  const [copied, setCopied] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
-  if (!poster) return null;
+  // Normalize data whether passed threatCard or legacy poster
+  const card: ThreatBreakdownCard | null = threatCard || (poster ? {
+    id: poster.id,
+    category: poster.category,
+    title: poster.title,
+    subtitle: poster.tagline,
+    threatLevel: 'HIGH',
+    riskScore: '8.8 / 10',
+    redFlags: ['Deceptive Visual Clone', 'Unverified Source Origin'],
+    visualMock: {
+      type: 'url',
+      headline: 'AWARENESS ADVISORY',
+      sampleText: poster.tagline,
+      targetWarning: 'Think Before You Click • PhishGuard Awareness'
+    },
+    keyTakeaways: [
+      'Always inspect the sender address and root domain before clicking links.',
+      'Never input sensitive passwords or OTPs on unsolicited login prompts.',
+      'Verify unexpected urgent communications directly through official channels.'
+    ],
+    forensicBreakdown: {
+      attackVector: 'Social engineering leveraging urgency and authority bias.',
+      psychologicalHook: 'Manufactured emergency to bypass critical thinking.',
+      defenseProtocol: 'Pause, evaluate the communication, and verify independently.'
+    }
+  } : null);
+
+  if (!card) return null;
 
   const handleDownload = async () => {
     if (!posterRef.current) return;
+    setDownloading(true);
     try {
       const canvas = await html2canvas(posterRef.current, {
-        scale: 3,
-        backgroundColor: null,
-        useCORS: true
+        scale: 2.5,
+        backgroundColor: '#0A0E17',
+        useCORS: true,
+        logging: false
       });
       const image = canvas.toDataURL('image/png');
       const link = document.createElement('a');
       link.href = image;
-      link.download = `PhishGuard_Poster_${poster.title.replace(/\s+/g, '_')}.png`;
+      link.download = `PhishGuard_Tactical_Advisory_${card.title.replace(/\s+/g, '_')}.png`;
       link.click();
     } catch (e) {
-      console.error('Failed downloading poster canvas:', e);
+      console.error('Failed generating poster canvas image:', e);
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -39,72 +72,166 @@ export const PosterModal: React.FC<PosterModalProps> = ({ poster, onClose }) => 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in">
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-xl w-full p-6 shadow-2xl space-y-6 relative overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto">
+      <div className="bg-[#131B2A] border border-white/20 rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-6 relative my-8">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition"
+          className="absolute top-4 right-4 p-2 rounded-xl bg-[#0A0E17] border border-white/10 text-slate-400 hover:text-white hover:border-white/30 transition"
+          aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
 
-        {/* Poster Canvas Element */}
+        {/* Modal Title Bar */}
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">
+              TACTICAL THREAT DOSSIER
+            </span>
+            <span className="text-[10px] font-mono text-slate-400">ID: {card.id}</span>
+          </div>
+          <h2 className="text-xl font-black text-white tracking-tight">
+            {card.title}
+          </h2>
+        </div>
+
+        {/* Printable Poster Canvas */}
         <div
           ref={posterRef}
-          className={`relative p-8 rounded-2xl bg-gradient-to-br ${poster.bg_gradient} border border-white/10 shadow-2xl flex flex-col justify-between aspect-[3/4] text-white overflow-hidden`}
+          className="bg-[#0A0E17] border-2 border-white/20 rounded-2xl p-6 sm:p-8 space-y-6 text-white relative overflow-hidden shadow-2xl"
+          style={{ backgroundColor: '#0A0E17' }}
         >
-          {/* Background Decorative Rings */}
-          <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-white/5 blur-xl pointer-events-none" />
-          <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-black/30 blur-xl pointer-events-none" />
+          {/* Subtle Grid Watermark Overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-20 pointer-events-none" />
 
-          {/* Top Brand Header */}
-          <div className="flex items-center justify-between z-10">
-            <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-              <Shield className="w-4 h-4 text-brand-400" />
-              <span className="font-extrabold text-xs tracking-wider">PHISHGUARD</span>
+          {/* Top Brand Banner */}
+          <div className="flex items-center justify-between border-b border-white/10 pb-4 relative z-10">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
+                <Shield className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div>
+                <span className="font-black text-sm tracking-tight font-sans">
+                  PHISH<span className="text-emerald-400">GUARD</span>
+                </span>
+                <p className="text-[9px] font-mono text-slate-400 uppercase tracking-widest -mt-0.5">
+                  CYBER DEFENSE INTELLIGENCE
+                </p>
+              </div>
             </div>
-            <span className="text-[10px] uppercase font-bold tracking-widest bg-white/10 px-2.5 py-1 rounded-full backdrop-blur-md">
-              {poster.category}
-            </span>
+
+            <div className="text-right">
+              <span className="text-[10px] font-mono font-bold text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded border border-rose-500/30">
+                THREAT LEVEL: {card.threatLevel}
+              </span>
+              <p className="text-[9px] font-mono text-slate-500 mt-1">CVSS BASE: {card.riskScore}</p>
+            </div>
           </div>
 
-          {/* Central Typography & Icon */}
-          <div className="my-auto text-center space-y-4 z-10 px-4">
-            <div className="w-20 h-20 mx-auto rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-xl">
-              <Shield className="w-10 h-10 text-white" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tight uppercase leading-tight drop-shadow-md">
-              {poster.title}
-            </h2>
-            <p className="text-sm font-medium text-white/90 leading-relaxed max-w-sm mx-auto drop-shadow-sm">
-              "{poster.tagline}"
+          {/* Hero Section */}
+          <div className="space-y-2 relative z-10">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400">
+              CATEGORY // {card.category}
+            </span>
+            <h3 className="text-2xl font-black text-white tracking-tight leading-tight">
+              {card.title}
+            </h3>
+            <p className="text-xs text-slate-300 leading-relaxed font-sans">
+              {card.subtitle}
             </p>
           </div>
 
-          {/* Footer Banner */}
-          <div className="pt-4 border-t border-white/20 flex items-center justify-between z-10 text-[11px] text-white/80">
-            <span className="font-bold tracking-wider uppercase">THINK BEFORE YOU CLICK</span>
-            <span>phishguard.campaign.edu</span>
+          {/* Visual Attack Mock Container */}
+          <div className="bg-[#131B2A] border border-white/15 rounded-xl p-4 space-y-2 relative z-10">
+            <div className="flex items-center justify-between text-[10px] font-mono">
+              <span className="text-rose-400 font-bold flex items-center gap-1.5">
+                <Crosshair className="w-3.5 h-3.5 text-rose-400" />
+                SIMULATED ATTACK VECTOR
+              </span>
+              <span className="text-slate-500">FORENSIC SAMPLE</span>
+            </div>
+            
+            <div className="bg-[#0A0E17] border border-rose-500/40 rounded-lg p-3 text-xs font-mono text-rose-300 break-all leading-relaxed">
+              {card.visualMock.sampleText}
+            </div>
+
+            <div className="text-[11px] font-sans text-rose-400 font-semibold flex items-start gap-1.5 pt-1">
+              <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400" />
+              <span>{card.visualMock.targetWarning}</span>
+            </div>
+          </div>
+
+          {/* Red Flag Badges */}
+          <div className="space-y-2 relative z-10">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">
+              Identified Threat Signals:
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {card.redFlags.map((flag, idx) => (
+                <span 
+                  key={idx}
+                  className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/35 text-rose-300"
+                >
+                  {flag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Forensic Deep Dive Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs relative z-10">
+            <div className="bg-[#131B2A]/70 p-3.5 rounded-xl border border-white/10 space-y-1">
+              <span className="text-[10px] font-mono text-slate-400 font-bold uppercase">Attack Mechanics:</span>
+              <p className="text-[11px] text-slate-300 leading-relaxed font-sans">{card.forensicBreakdown.attackVector}</p>
+            </div>
+            <div className="bg-[#131B2A]/70 p-3.5 rounded-xl border border-white/10 space-y-1">
+              <span className="text-[10px] font-mono text-slate-400 font-bold uppercase">Psychological Bait:</span>
+              <p className="text-[11px] text-slate-300 leading-relaxed font-sans">{card.forensicBreakdown.psychologicalHook}</p>
+            </div>
+          </div>
+
+          {/* Key Defense Protocol */}
+          <div className="bg-emerald-950/20 border border-emerald-500/40 rounded-xl p-4 space-y-2 relative z-10">
+            <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              Mandatory Defense Takeaways:
+            </span>
+            <ul className="space-y-1 text-xs text-slate-200">
+              {card.keyTakeaways.map((takeaway, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-emerald-400 font-bold">•</span>
+                  <span>{takeaway}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Poster Bottom Sign-off */}
+          <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-500 relative z-10">
+            <span>STAY SECURE // THINK BEFORE YOU CLICK</span>
+            <span>PHISHGUARD DEFENSE PLATFORM</span>
           </div>
         </div>
 
-        {/* Action Controls */}
+        {/* Modal Actions */}
         <div className="flex items-center justify-between gap-3 pt-2">
           <button
             onClick={handleShare}
-            className="flex-1 py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-center gap-2 border border-slate-700 transition"
+            className="flex-1 py-2.5 px-4 rounded-xl bg-[#0A0E17] hover:bg-white/5 text-slate-200 text-xs font-bold flex items-center justify-center gap-2 border border-white/10 transition"
           >
             {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
-            {copied ? 'Link Copied!' : 'Share Poster'}
+            {copied ? 'Link Copied!' : 'Share Threat Advisory'}
           </button>
           
           <button
             onClick={handleDownload}
-            className="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-brand-600 to-shield-dark text-white text-xs font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition shadow-lg shadow-brand-500/20"
+            disabled={downloading}
+            className="flex-1 py-2.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-bold flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-500/25 disabled:opacity-50"
           >
-            <Download className="w-4 h-4" /> Download High-Res PNG
+            <Download className="w-4 h-4" />
+            {downloading ? 'Rendering Image...' : 'Export High-Res PNG Poster'}
           </button>
         </div>
 
@@ -112,3 +239,5 @@ export const PosterModal: React.FC<PosterModalProps> = ({ poster, onClose }) => 
     </div>
   );
 };
+
+export default PosterModal;

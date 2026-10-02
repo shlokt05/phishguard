@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Shield, Search, AlertCircle, CheckCircle, ExternalLink, HelpCircle, Lock, Monitor, ArrowRight, AlertOctagon } from 'lucide-react';
 import { UrlAnalyzer } from '../components/UrlAnalyzer';
 import { FlowDiagram } from '../components/FlowDiagram';
+import { ThreatLab } from '../components/ThreatLab';
 import { apiService } from '../services/api';
 
 export const FakeWebsiteTraining: React.FC = () => {
@@ -18,6 +19,7 @@ export const FakeWebsiteTraining: React.FC = () => {
     { num: 5, title: "5. Visual Red Flags" },
     { num: 6, title: "6. What To Do Next" },
     { num: 7, title: "7. Detection Challenge" },
+    { num: 8, title: "8. 🔬 Real vs. Fake Threat Lab" },
   ];
 
   const detectionScenarios = [
@@ -396,6 +398,11 @@ export const FakeWebsiteTraining: React.FC = () => {
           </div>
 
         </div>
+      )}
+
+      {/* LESSON 8: REAL VS. FAKE THREAT LAB */}
+      {activeTab === 8 && (
+        <ThreatLab />
       )}
 
     </div>

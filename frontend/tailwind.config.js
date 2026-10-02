@@ -8,23 +8,31 @@ export default {
   theme: {
     extend: {
       colors: {
+        tactical: {
+          bg: '#0A0E17',
+          card: '#131B2A',
+          border: 'rgba(255, 255, 255, 0.08)',
+          subtle: '#1E293B',
+          accent: '#10B981',
+          threat: '#EF4444'
+        },
         brand: {
-          50: '#f0f7ff',
-          100: '#e0effe',
-          200: '#bae0fd',
-          300: '#7cc8fb',
-          400: '#36a9f7',
-          500: '#0c8de4',
-          600: '#0270c1',
-          700: '#03599d',
-          800: '#074c81',
-          900: '#0c406c',
-          950: '#082847'
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#10b981',
+          600: '#059669',
+          700: '#047857',
+          800: '#065f46',
+          900: '#064e3b',
+          950: '#022c22'
         },
         shield: {
-          light: '#00f2fe',
-          DEFAULT: '#4facfe',
-          dark: '#005bea'
+          light: '#34d399',
+          DEFAULT: '#10b981',
+          dark: '#047857'
         },
         danger: {
           500: '#ef4444',
@@ -41,6 +49,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       animation: {
         'pulse-glow': 'pulse-glow 2s infinite',
@@ -48,8 +57,8 @@ export default {
       },
       keyframes: {
         'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 15px rgba(54, 169, 247, 0.4)' },
-          '50%': { boxShadow: '0 0 25px rgba(54, 169, 247, 0.8)' }
+          '0%, 100%': { boxShadow: '0 0 15px rgba(16, 185, 129, 0.3)' },
+          '50%': { boxShadow: '0 0 25px rgba(16, 185, 129, 0.6)' }
         },
         'float': {
           '0%, 100%': { transform: 'translateY(0px)' },
