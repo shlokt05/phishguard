@@ -436,12 +436,21 @@ def build_pdf():
         Paragraph("<b>3. Global Edge Web:</b> Live worldwide on GitHub Pages Fastly CDN with TLS 1.3 encryption and zero hosting costs.", bullet_style)
     ]
 
+    qr_img_rel = "PhishGuard_Clean_QR.png"
+    qr_widget = RLImage(qr_img_rel, width=115, height=115) if os.path.exists(qr_img_rel) else Paragraph("<b>[QR CODE]</b>", bullet_style)
+
     mp2 = [
-        Paragraph("PRODUCTION DEPLOYMENT MATRIX", h2_style),
-        Paragraph("<b>• Live Public Web URL:</b><br/><font color='#38BDF8'>https://shlokt05.github.io/phishguard/</font>", bullet_style),
-        Paragraph("<b>• Presentation PDF Direct Link:</b><br/><font color='#38BDF8'>https://shlokt05.github.io/phishguard/PhishGuard_App_Presentation.pdf</font>", bullet_style),
-        Paragraph("<b>• Source Repository:</b><br/><font color='#A78BFA'>https://github.com/shlokt05/phishguard</font>", bullet_style),
-        Paragraph("<b>• CI/CD Pipeline:</b> Fully automated GitHub Actions workflow on every git push.", bullet_style)
+        Paragraph("SCAN TO DOWNLOAD & LAUNCH", h2_style),
+        Table([
+            [
+                qr_widget,
+                [
+                    Paragraph("<b>• Live Web & PWA URL:</b><br/><font color='#38BDF8'>https://shlokt05.github.io/phishguard/</font>", bullet_style),
+                    Paragraph("<b>• Direct Android APK:</b><br/><font color='#10B981'>https://shlokt05.github.io/phishguard/PhishGuard.apk</font>", bullet_style),
+                    Paragraph("<b>• Source Repository:</b><br/><font color='#A78BFA'>https://github.com/shlokt05/phishguard</font>", bullet_style),
+                ]
+            ]
+        ], colWidths=[125, 205], style=[('VALIGN', (0,0), (-1,-1), 'MIDDLE'), ('PADDING', (0,0), (-1,-1), 0)])
     ]
 
     t_s10 = Table([[mp1, mp2]], colWidths=[345, 345])

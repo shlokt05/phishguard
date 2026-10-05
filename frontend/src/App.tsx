@@ -17,6 +17,7 @@ import { Campaign } from './pages/Campaign';
 import { About } from './pages/About';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
+import { DownloadPage } from './pages/Download';
 
 export const App: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ export const App: React.FC = () => {
               <Route path="/progress" element={<Progress />} />
               <Route path="/campaign" element={<Campaign />} />
               <Route path="/about" element={<About />} />
+              <Route path="/download" element={<DownloadPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="*" element={<Navigate to="/" replace />} />

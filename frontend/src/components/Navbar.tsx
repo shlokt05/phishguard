@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Shield, Menu, X, User as UserIcon, LogOut, CheckCircle } from 'lucide-react';
+import { Shield, Menu, X, User as UserIcon, LogOut, CheckCircle, QrCode, Download } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar: React.FC = () => {
@@ -19,6 +19,7 @@ export const Navbar: React.FC = () => {
     { name: 'Progress', path: '/progress' },
     { name: 'Campaign', path: '/campaign' },
     { name: 'About', path: '/about' },
+    { name: 'Get App', path: '/download' },
   ];
 
   const isActive = (path: string) => {
@@ -101,10 +102,24 @@ export const Navbar: React.FC = () => {
                 </Link>
               </div>
             )}
+            <Link
+              to="/download"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 border border-cyan-500/30 text-cyan-300 hover:text-white hover:border-cyan-400/50 transition-all shadow-sm shadow-cyan-500/10"
+            >
+              <QrCode className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Get App</span>
+            </Link>
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger Button & Quick App Link */}
           <div className="flex lg:hidden items-center gap-2">
+            <Link
+              to="/download"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-cyan-500/15 border border-cyan-500/30 text-cyan-400"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>App</span>
+            </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none"
